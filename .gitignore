@@ -1,3 +1,5 @@
+.gitignore
+/Screens/__pycache__
 /Fonts
 /Icon
 data/config.dat
