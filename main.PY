@@ -1,17 +1,7 @@
-from kivy.core.window import Window
 from kivy.app import App
-from kivy.uix.widget import Widget
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.screenmanager import ScreenManager
 from kivy.animation import Animation
-from kivy.config import Config
-from kivy.uix.popup import Popup
-from kivy.uix.label import Label
-from kivy.uix.switch import Switch
-from kivy.clock import Clock
-from kivy.uix.floatlayout import FloatLayout
-from kivy.core.clipboard import Clipboard
 
 from Screens import generator_screen
 from Screens import settings_screen
@@ -21,15 +11,13 @@ class WindowManager(ScreenManager):
     pass
 
 
-kv = Builder.load_file('main.kv')
-Config.set('graphics', 'resizable', '0')
-Config.write()
+KV = Builder.load_file('main.kv')
 
 
 class PasswordGenerator(App):
     def build(self):
         self.icon = 'Icon/App_icon/keys.png'
-        return kv
+        return KV
 
     def returning_name(self, widget, *arsg):
         animate = Animation(
@@ -44,16 +32,12 @@ class PasswordGenerator(App):
         animate.start(widget)
 
     def animate_name(self, widget, *args):
-        animate = Animation(
-            pos_hint={'top': 1.43}
-            )
+        animate = Animation(pos_hint={'top': 1.43})
         animate.start(widget)
 
     def animate_settings_menu(self, widget, *args):
-        animate = Animation(
-            top_hint=0.8)
+        animate = Animation(top_hint=0.8)
         animate.start(widget)
 
 
-if __name__ == '__main__':
-    PasswordGenerator().run()
+PasswordGenerator().run()
