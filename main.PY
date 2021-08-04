@@ -3,9 +3,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.animation import Animation
 
-from Screens import generator_screen
-from Screens import settings_screen
-from Screens import information_screen
+
+import Screens
+
 
 class WindowManager(ScreenManager):
     pass
