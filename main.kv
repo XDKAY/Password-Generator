@@ -24,15 +24,6 @@ WindowManager:
 <BackgroundLabel@Label+BackgroundColor>:
 	background_color: (0, 0, 0, 0)
 
-<InformationWindow@BoxLayout>:
-	Label:
-		text: '[font=Fonts/BebasNeueBold][color=#339933]Information[/color][/font]' # (#339933)
-		font_size: 30
-		size_hint: (None, None)
-		pos_hint: {'center_x': 0.5}
-	TextInput:
-		multiline: False
-
 # First Screen
 <GeneratorScreen>:
 	name:'password_geniration'
@@ -42,7 +33,7 @@ WindowManager:
 
 		InfoButton:
 			id: info_button
-			text: '[font=Fonts/SouthernAire_Personal_Use_Only][color=#b3e6b3]?[/color][/font]' # #b3e6b3
+			text: '[font=Fonts/SouthernAire_Personal_Use_Only][color=#b3e6b3]?[/color][/font]'
 			font_size:30
 			size_hint: (None, None)
 			width: 25
@@ -62,7 +53,7 @@ WindowManager:
 		padding: 10
 		spacing: 20
 		Label:
-			text:'[font=Dopestyle][color=#339933]Password Geniration[/color][/font]' # #339933
+			text:'[font=Dopestyle][color=#339933]Password Geniration[/color][/font]'
 			font_size: 40
 			size_hint:(0.5, 0.5)
 			pos_hint:{'center_x': 0.5}
@@ -96,7 +87,7 @@ WindowManager:
 				copydata: self.text
 		# Genirate Button
 		StrokeButton:
-			text:'[font=Fonts/BebasNeueBold][color=#339933]Genirate[/color][/font]' # #339933
+			text:'[font=Fonts/BebasNeueBold][color=#339933]Genirate[/color][/font]'
 			font_size: 25
 			size_hint: (None, None)
 			width: 205
@@ -107,7 +98,7 @@ WindowManager:
 				root.generator()
 		# Clear Button
 		StrokeButton:
-			text:'[font=Fonts/BebasNeueBold][color=#339933]Clear[/color][/font]' # #339933
+			text:'[font=Fonts/BebasNeueBold][color=#339933]Clear[/color][/font]'
 			font_size: 25
 			size_hint: (None, None)
 			width: 205
@@ -119,7 +110,7 @@ WindowManager:
 		# Copy Button
 		StrokeButton:
 			id: copy_button
-			text: '[font=Fonts/BebasNeueBold][color=#339933]Copy Password[/color][/font]' # #339933
+			text: '[font=Fonts/BebasNeueBold][color=#339933]Copy Password[/color][/font]'
 			size_hint: (None, None)
 			font_size: 25
 			width: 205
@@ -130,7 +121,7 @@ WindowManager:
 		# Settings Button
 		StrokeButton:
 			id: settings_button
-			text: '[font=Fonts/BebasNeueBold][color=#339933]Settings[/color][/font]' # #339933
+			text: '[font=Fonts/BebasNeueBold][color=#339933]Settings[/color][/font]'
 			size_hint: (None, None)
 			font_size: 25
 			width: 205
@@ -149,31 +140,31 @@ WindowManager:
 				spacing: 20
 				padding: 5
 				Label:
-					text:'[font=Fonts/BebasNeueBold][color=#339933]Only Numbers[/color][/font]' # #339933
+					text:'[font=Fonts/BebasNeueBold][color=#339933]Only Numbers[/color][/font]'
 					font_size: 19
 				Switch:
 					id: only_numbers
 
 				Label:
-					text:'[font=Fonts/BebasNeueBold][color=#339933]The numbers[/color][/font]' # #339933
+					text:'[font=Fonts/BebasNeueBold][color=#339933]The numbers[/color][/font]'
 					font_size: 19
 				Switch:
 					id: numbers
 
 				Label:
-					text:'[font=Fonts/BebasNeueBold][color=#339933]Upper Case[/color][/font]' # #339933
+					text:'[font=Fonts/BebasNeueBold][color=#339933]Upper Case[/color][/font]'
 					font_size: 19
 				Switch:
 					id: upper_case
 
 				Label:
-					text:'[font=Fonts/BebasNeueBold][color=#339933]Lower Case[/color][/font]' # #339933
+					text:'[font=Fonts/BebasNeueBold][color=#339933]Lower Case[/color][/font]'
 					font_size: 19
 				Switch:
 					id: lower_case
 
 				Label:
-					text:'[font=Fonts/BebasNeueBold][color=#339933]Symbols[/color][/font]' # #339933
+					text:'[font=Fonts/BebasNeueBold][color=#339933]Symbols[/color][/font]'
 					font_size: 19
 				Switch:
 					id: symbol
@@ -187,9 +178,8 @@ WindowManager:
 		Line:
 			rectangle: (self.x, self.y, self.width, self.height)
 			width: 1.7
-							
+
 <InfoButton@Button>:
-	id: i_button
 	background_color: (0, 0, 0, 0)
 	background_normal: ''
 	canvas.before:
@@ -201,7 +191,6 @@ WindowManager:
 			radius: [10000]
 
 <StrokeButton@Button>:
-	id: stroke_button
 	background_color: (0, 0, 0, 0)
 	background_normal: ''
 	border_radius: 21
@@ -212,7 +201,7 @@ WindowManager:
 			rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
 			width: 1.5
 
-<NameLabel@BoxLayout>:
+<Settings_@BoxLayout>:
 	Label:
 		text:'[font=Dopestyle][color=#339933]Settings[/color][/font]'
 		font_size: 40
@@ -244,7 +233,7 @@ WindowManager:
 			ColorButton:
 				text:''
 				background_color: (1, 1, 1, 1)
-				width: 25				
+				width: 25
 				size_hint: (None, None)
 				height: 25
 				pos_hint: {'center_x': 0.5, 'y': 0.88}
@@ -254,7 +243,7 @@ WindowManager:
 			ColorButton:
 				text:''
 				background_color: (204/255, 255/255, 255/255, 1)
-				width: 25				
+				width: 25
 				size_hint: (None, None)
 				height: 25
 				pos_hint: {'center_x': 0.7, 'y': 0.88}
@@ -299,7 +288,7 @@ WindowManager:
 				app.root.current = 'password_geniration'
 				root.manager.transition.direction = 'right'
 				root.returning_settings_button(settings_button)
-				app.returning_name(name)
+				app.returning_name(settings_)
 				app.returning_settings_window(settings_window)
 		# Settings Button
 		StrokeButton:
@@ -311,11 +300,11 @@ WindowManager:
 			on_release:
 				root.animate_settings_button(self)
 			on_release:
-				app.animate_name(name)
+				app.animate_name(settings_)
 			on_release:
 				app.animate_settings_menu(settings_window)
-		NameLabel:
-			id: name
+		Settings_:
+			id: settings_
 			size_hint: 1, 1
 			pos_hint: {'top': 1.9, 'center_x': 0.5, 'bottom': 0}
 		SettingsWindow:
