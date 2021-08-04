@@ -10,4 +10,6 @@ Password generator written in the Python programming language using the Kivy lib
 2. Then install the kivy library:<br/>
 `pip install kivy`
 
-3. You can use!
+3. Install fonts from the Fonts folder.
+
+4. You can use!
