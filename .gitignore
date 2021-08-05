@@ -1,5 +1,5 @@
 .gitignore
-/Screens/__pycache__
-/Fonts
-/Icon
-/data/config.dat
+Screens/__pycache__
+Fonts/
+Icon/
+config.dat
