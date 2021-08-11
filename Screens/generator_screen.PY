@@ -66,31 +66,31 @@ class GeneratorScreen(Screen):
 			self.password = ''
 
 			# Only numbers
-			if self.ids.only_numbers.active:
+			if self.ids.numbers.active:
 				self.items += self.numbers
 				for i in range(self.len_password[0]):
 					self.password += f'{random.choice(self.items)}'
 
 			# Upper case letters, numbers, lower case letters and symbols
-			elif self.ids.upper_case.active and self.ids.numbers.active and self.ids.lower_case.active and self.ids.symbol.active:
+			elif all((self.ids.upper_case.active, self.ids.numbers.active, self.ids.lower_case.active, self.ids.symbol.active)):
 				self.items += self.upper_case_letters + self.lower_case_letters + self.symbols + self.numbers
 				for i in range(self.len_password[0]):
 					self.password += f'{random.choice(self.items)}'
 
 			# Upper case letters, numbers and symbols
-			elif self.ids.upper_case.active and self.ids.numbers.active and self.ids.symbol.active:
+			elif all((self.ids.upper_case.active, self.ids.numbers.active, self.ids.symbol.active)):
 					self.items += self.upper_case_letters + self.symbols + self.numbers
 					for i in range(self.len_password[0]):
 						self.password += f'{random.choice(self.items)}'
 
 			# Upper case letters, lower case letters and symbols
-			elif self.ids.upper_case.active and self.ids.lower_case.active and self.ids.symbol.active:
+			elif all((self.ids.upper_case.active, self.ids.lower_case.active, self.ids.symbol.active)):
 				self.items += self.upper_case_letters + self.symbols + self.lower_case_letters
 				for i in range(self.len_password[0]):
 					self.password += f'{random.choice(self.items)}'
 
 			# Upper case letters?, numbers and lower case letters
-			elif self.ids.upper_case.active and self.ids.numbers.active and self.ids.lower_case.active:
+			elif all((self.ids.upper_case.active, self.ids.numbers.active, self.ids.lower_case.active)):
 				self.items += self.upper_case_letters + self.lower_case_letters + self.numbers
 				for i in range(self.len_password[0]):
 					self.password += f'{random.choice(self.items)}'
@@ -120,7 +120,7 @@ class GeneratorScreen(Screen):
 					self.password += f'{random.choice(self.items)}'
 
 			# Lower case letters, numbers and symbols
-			if self.ids.lower_case.active and self.ids.numbers.active and self.ids.symbol.active:
+			if all((self.ids.lower_case.active, self.ids.numbers.active, self.ids.symbol.active)):
 				self.items += self.lower_case_letters + self.numbers + self.symbols
 				for i in range(self.len_password[0]):
 					self.password += f'{random.choice(self.items)}'
