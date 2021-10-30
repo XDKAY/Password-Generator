@@ -31,10 +31,10 @@ class SettingsWindow(TabbedPanel):
 		self.name = 'window_background_color'
 		self.update_window_background_color()
 
-	# window background color
+	# window background color 0.9686274509803922, 1.0, 0.9019607843137255, 1
 	def color_change(self, color):
 		background_color = {
-			'Yellow':(0.9686274509803922, 1.0, 0.9019607843137255, 1),
+			'Yellow':(69/255, 69/255, 69/255, 1),
 			'White':(1, 1, 1, 1),
 			'Blue':(0.8, 1.0, 1.0, 1)
 		}
