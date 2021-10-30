@@ -31,10 +31,10 @@ class SettingsWindow(TabbedPanel):
 		self.name = 'window_background_color'
 		self.update_window_background_color()
 
-	# window background color 0.9686274509803922, 1.0, 0.9019607843137255, 1
+	# window background color 
 	def color_change(self, color):
 		background_color = {
-			'Yellow':(69/255, 69/255, 69/255, 1),
+			'Grey':(69/255, 69/255, 69/255, 1),
 			'White':(1, 1, 1, 1),
 			'Blue':(0.8, 1.0, 1.0, 1)
 		}
@@ -48,3 +48,12 @@ class SettingsWindow(TabbedPanel):
 		if self.Config.exists(self.name):
 			background_color = self.Config[self.name]['background_color']
 			Window.clearcolor = background_color
+
+	def animated_save_setting_button(self, widget, *args):
+		animate = Animation(
+			width=220,
+			duration=0.2)
+		animate += Animation(
+			width=205,
+			duration=0.2)
+		animate.start(widget)

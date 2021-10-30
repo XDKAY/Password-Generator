@@ -185,3 +185,12 @@ class GeneratorScreen(Screen):
 
 	def start_button_animation(self):
 		Clock.schedule_interval(self.animate_info_button, 1.5)
+
+	def button_animation(self, widget, *args):
+		animate = Animation(
+			width=220,
+			duration=0.2)
+		animate += Animation(
+			width=205,
+			duration=0.2)
+		animate.start(widget)

@@ -96,6 +96,8 @@ WindowManager:
 			pos_hint:{'center_x': 0.5}
 			on_press:
 				root.generator()
+			on_release:
+				root.button_animation(self)
 		# Clear Button
 		StrokeButton:
 			text:'[font=Fonts/BebasNeueBold][color=#339933]Clear[/color][/font]'
@@ -107,6 +109,8 @@ WindowManager:
 			pos_hint:{'center_x': 0.5}
 			on_press:
 				root.clear_text()
+			on_release:
+				root.button_animation(self)
 		# Copy Button
 		StrokeButton:
 			id: copy_button
@@ -118,6 +122,8 @@ WindowManager:
 			pos_hint: {'center_x':0.5}
 			on_press:
 				root.copy_password()
+			on_release:
+				root.button_animation(self)
 		# Settings Button
 		StrokeButton:
 			id: settings_button
@@ -253,6 +259,8 @@ WindowManager:
 				pos_hint: {'center_x':0.5, 'y':0.328}
 				on_press:
 					root.save_settings()
+				on_release:
+					root.animated_save_setting_button(self)
 	TabbedPanelItem:
 		text:'[font=Fonts/BebasNeueBold][color=#339933]Language[/color][/font]'
 		font_size: 23
