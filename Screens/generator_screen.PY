@@ -6,6 +6,11 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
+from kivy.uix.button import ButtonBehavior
+from kivy.uix.image import Image
+
+
+class CopyButton(Image, ButtonBehavior): pass
 
 
 class GeneratorScreen(Screen):
