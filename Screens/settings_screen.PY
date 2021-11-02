@@ -3,9 +3,14 @@ from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.storage.dictstore import DictStore
+from kivy.config import Config
 
 
 Window.clearcolor = (1, 1, 1, 1)
+Window.size = (500, 650)
+
+Config.set('graphics','resizable', 0)
+Config.write()
 
 
 class SettingsScreen(Screen):
