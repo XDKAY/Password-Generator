@@ -1,4 +1,5 @@
 import random
+import sqlite3
 
 from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
@@ -8,9 +9,6 @@ from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
 from kivy.uix.button import ButtonBehavior
 from kivy.uix.image import Image
-
-
-class CopyButton(Image, ButtonBehavior): pass
 
 
 class GeneratorScreen(Screen):
@@ -199,3 +197,27 @@ class GeneratorScreen(Screen):
 			width=205,
 			duration=0.2)
 		animate.start(widget)
+
+	def save_password(self):
+		password = self.ids.password.text
+
+		if password == '': pass
+
+		else:
+			try:
+				# adds password to the database
+				base = sqlite3.connect('data/db/saved_passwords.db')
+				cursor = base.cursor()
+				
+				cursor.execute('INSERT INTO saved_passwords VALUES(?)', (password, ))
+				base.commit()
+			except sqlite3.IntegrityError:
+				popup = Popup(title='[color=#339933][font=Dopestyle]ERROR[/font][/color]',
+							content=Label(text='[font=times][color=#339933]This password has already been saved.[/color][/font]',
+										  font_size=15),
+							size_hint=(None, None),
+							size=(250, 250),
+							auto_dismiss=True,
+						title_align='center')
+				return popup.open()
+			finally: pass

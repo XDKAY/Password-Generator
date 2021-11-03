@@ -1,9 +1,12 @@
+import sqlite3
+
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.storage.dictstore import DictStore
 from kivy.config import Config
+from kivy.uix.label import Label
 
 
 Window.clearcolor = (1, 1, 1, 1)
@@ -34,7 +37,9 @@ class SettingsWindow(TabbedPanel):
 		super().__init__(**kwargs)
 		self.color = (1, 1, 1, 1)
 		self.name = 'window_background_color'
+		self.password = Label()
 		self.update_window_background_color()
+		self.count = 0
 
 	# window background color 
 	def color_change(self, color):
@@ -62,3 +67,33 @@ class SettingsWindow(TabbedPanel):
 			width=205,
 			duration=0.2)
 		animate.start(widget)
+
+	def button_animation(self, widget, *args):
+		animate = Animation(
+			width=220,
+			duration=0.2)
+		animate += Animation(
+			width=205,
+			duration=0.2)
+		animate.start(widget)
+
+	def _retrieving_passwords_from_the_database(self):
+
+		# connect to database and take value from table
+		base = sqlite3.connect('data/db/saved_passwords.db')
+		cursor = base.cursor()
+		password = cursor.execute('SELECT password FROM saved_passwords').fetchall()
+
+		if self.count == 1: pass 
+		else:
+			word = ''
+			for i in password:
+				word = f'{word}\n{i[0]}'
+				self.password = Label(text=word, color=(0,0,0,1))
+
+			self.ids.floatLayout.add_widget(self.password)
+			self.count += 1
+
+	def clear_passwords(self):
+		self.count = 0
+		self.ids.floatLayout.remove_widget(self.password)

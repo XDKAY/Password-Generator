@@ -1,3 +1,6 @@
+import sqlite3
+
+
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
@@ -17,6 +20,12 @@ KV = Builder.load_file('main.kv')
 class PasswordGenerator(App):
     def build(self):
         self.icon = 'Icon/App_icon/keys.png'
+
+        # Create database
+        base = sqlite3.connect('data/db/saved_passwords.db')
+        base.execute('CREATE TABLE IF NOT EXISTS saved_passwords(password PRIMARY KEY)')
+        base.commit()
+
         return KV
 
     def returning_name(self, widget, *arsg):

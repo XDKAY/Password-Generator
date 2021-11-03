@@ -129,6 +129,19 @@ WindowManager:
 				root.clear_text()
 			on_release:
 				root.button_animation(self)
+		# Save Password Button
+		StrokeButton:
+			text:'[font=Fonts/BebasNeueBold][color=#339933]Save Password[/color][/font]'
+			font_size: 25
+			size_hint: (None, None)
+			width: 205
+			height: 45
+			# size_hint:(0.55, 0.4)
+			pos_hint:{'center_x': 0.5}
+			on_release:
+				root.button_animation(self)
+			on_press:
+				root.save_password()
 		# Settings Button
 		StrokeButton:
 			id: settings_button
@@ -208,7 +221,7 @@ WindowManager:
 
 <Settings_@BoxLayout>:
 	Label:
-		text:'[font=Dopestyle][color=#339933]Settings[/color][/font]'
+		text: '[font=Dopestyle][color=#339933]Settings[/color][/font]'
 		font_size: 40
 
 <SettingsWindow>:
@@ -267,15 +280,35 @@ WindowManager:
 				on_release:
 					root.animated_save_setting_button(self)
 	TabbedPanelItem:
-		text:'[font=Fonts/BebasNeueBold][color=#339933]Language[/color][/font]'
+		text:'[font=Fonts/BebasNeueBold][color=#339933]Passwords[/color][/font]'
 		font_size: 23
 		background_color: (179/255, 229/255, 205/255, 0)
 		FloatLayout:
+			id: floatLayout
+			orientation: 'vertical'
 			size: root.width, root.height
-			Label:
-				text: '[font=Fonts/BebasNeueBold][color=#339933]In developing[/color][/font]'
-				font_size: 23
-				pos_hint: {'center_x': 0.5, 'y':0.3}
+			StrokeButton:
+				text: '[font=Fonts/BebasNeueBold][color=#339933]Open[/color][/font]'
+				size_hint: (None, None)
+				font_size: 25
+				width: 205
+				height: 45
+				pos_hint: {'center_x':0.25, 'y':0.328}
+				on_press:
+					root._retrieving_passwords_from_the_database()
+				on_release:
+					root.button_animation(self)
+			StrokeButton:
+				text: '[font=Fonts/BebasNeueBold][color=#339933]Clear[/color][/font]'
+				size_hint: (None, None)
+				font_size: 25
+				width: 205
+				height: 45
+				pos_hint: {'center_x':0.75, 'y':0.328}
+				on_press:
+					root.clear_passwords()
+				on_release:
+					root.button_animation(self)
 
 #Second Screen
 <SettingsScreen>:
