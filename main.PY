@@ -1,10 +1,10 @@
 import sqlite3
 
-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.animation import Animation
+from kivy.core.window import Window
 
 
 import Screens
@@ -16,7 +16,7 @@ class WindowManager(ScreenManager):
 
 KV = Builder.load_file('main.kv')
 
-
+# 500, 650
 class PasswordGenerator(App):
     def build(self):
         self.icon = 'Icon/App_icon/keys.png'

@@ -9,13 +9,6 @@ from kivy.config import Config
 from kivy.uix.label import Label
 
 
-Window.clearcolor = (1, 1, 1, 1)
-Window.size = (500, 650)
-
-Config.set('graphics','resizable', 0)
-Config.write()
-
-
 class SettingsScreen(Screen):
 	def animate_settings_button(self, widget, *args):
 		animate = Animation(
@@ -31,7 +24,11 @@ class SettingsScreen(Screen):
 
 
 class SettingsWindow(TabbedPanel):
-	Config = DictStore('data/config.dat')
+
+	Config.set('graphics','resizable', 0)
+	Config.write()
+
+	Config_ = DictStore('data/config.dat')
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
@@ -52,11 +49,11 @@ class SettingsWindow(TabbedPanel):
 		self.color = background_color[color]
 
 	def save_settings(self):
-		self.Config.put(self.name, background_color=self.color)
+		self.Config_.put(self.name, background_color=self.color)
 
 	def update_window_background_color(self):
-		if self.Config.exists(self.name):
-			background_color = self.Config[self.name]['background_color']
+		if self.Config_.exists(self.name):
+			background_color = self.Config_[self.name]['background_color']
 			Window.clearcolor = background_color
 
 	def animated_save_setting_button(self, widget, *args):
