@@ -1,32 +1,47 @@
 import sqlite3
 
-from kivy.app import App
+
 from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivy import platform
+from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager
 from kivy.animation import Animation
 from kivy.core.window import Window
+from kivy.core.clipboard import Clipboard
+from kivymd.uix.snackbar import Snackbar
 
 
 import Screens
 
 
-class WindowManager(ScreenManager):
-    pass
+from kv import KV
 
 
-KV = Builder.load_file('main.kv')
+# KV = Builder.load_file('main.kv')
+
+Builder.load_string(KV)
 
 # 500, 650
-class PasswordGenerator(App):
+class PasswordGenerator(MDApp):
     def build(self):
-        self.icon = 'Icon/App_icon/keys.png'
+        self.icon = 'image/App_icon/keys.png'
 
-        # Create database
-        base = sqlite3.connect('data/db/saved_passwords.db')
-        base.execute('CREATE TABLE IF NOT EXISTS saved_passwords(password PRIMARY KEY)')
+        self.os_check()
+
+        # Create database passwords and time     
+        base = sqlite3.connect('data/db/db.db')
+        base.execute('CREATE TABLE IF NOT EXISTS db(password PRIMARY KEY, date_time)')
         base.commit()
 
-        return KV
+        sm = ScreenManager()
+
+        sm.add_widget(Screens.generator_screen.GeneratorScreen(name='password_geniration'))
+        sm.add_widget(Screens.settings_screen.SettingsScreen(name='settings'))
+        sm.add_widget(Screens.saved_passwords.SavedPasswordsScreen(name='saved_passwords'))
+        sm.add_widget(Screens.information_screen.InformationScreen(name='information'))
+
+        return sm
 
     def returning_name(self, widget, *arsg):
         animate = Animation(
@@ -48,5 +63,29 @@ class PasswordGenerator(App):
         animate = Animation(top_hint=0.8)
         animate.start(widget)
 
+    def os_check(self):
+        """
+        OS type checking function
+        return: None
+        """
+
+        if platform in ('win', 'linux', 'macosx', 'unknow'):
+            Config.set('graphics','resizable', 0)
+            Config.write()
+
+    def copy_password(self, password):
+        """
+        A function that copies the password from the List (Item)
+        param: password
+        return: class Snacbar()
+        """
+        
+        Clipboard.copy(password)
+        return Snackbar(
+            text='Password copied successfully!',
+            snackbar_x = '20dp',
+            snackbar_y = '10dp',
+            size_hint_x = 0.9
+            ).open()
 
 PasswordGenerator().run()

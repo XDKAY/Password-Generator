@@ -1,3 +1,4 @@
+KV = """
 #:import utils kivy.utils
 #:import Clipboard kivy.core.clipboard.Clipboard
 #:import Factory kivy.factory.Factory
@@ -57,7 +58,7 @@
 
 # First Screen
 <GeneratorScreen>:
-	name:'password_generation'
+	name:'password_geniration'
 	# Information Button
 	MDFloatLayout:
 		size:root.width, root.height
@@ -412,3 +413,4 @@
 	text: 'OPEN'
 	on_release:
 		app.root.current = 'saved_passwords'
+"""
